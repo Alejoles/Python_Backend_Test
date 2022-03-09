@@ -1,9 +1,8 @@
-from re import T
-from tracemalloc import start
 from getcountries import alert_country
 import pandas as pd
 import hashlib
 import timeit
+import sqlite3 as sql
 
 
 @alert_country
@@ -17,7 +16,7 @@ def encode_sha1(str):
 
 
 def get_info_country(json):
-    name = json['translations']['spa']['common']
+    name = json['name']['common']
     region = json['region']
 
     if('languages' not in json):
@@ -33,10 +32,15 @@ def get_info_country(json):
 
 
 def time_values(df):
-    print(df['Time'].sum())
-    print(df['Time'].mean())
-    print(df['Time'].min())
-    print(df['Time'].max())
+    print('Total time: ' + str(df['Time(ms)'].sum()) + ' ms')
+    print('Mean time: ' + str(df['Time(ms)'].mean()) + ' ms')
+    print('Min time: ' + str(df['Time(ms)'].min()) + ' ms')
+    print('Max time: ' + str(df['Time(ms)'].max()) + ' ms')
+
+
+def sql_data_movement(df):
+    conn = sql.connect('countries.db')
+    df.to_sql('countries', con=conn)
 
 
 def main():
@@ -49,8 +53,13 @@ def main():
         df.loc[len(df.index)] = info
         stop = timeit.default_timer()
         time.append(float("{:.2f}".format((stop - start)*1000)))
-    df['Time'] = time
+    df['Time(ms)'] = time  # Adding the column time with its values
+
     print(df.head())
+
+    time_values(df)
+
+    df.to_json(r'./data.json')
 
 
 if __name__ == "__main__":
