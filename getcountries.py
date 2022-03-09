@@ -1,8 +1,9 @@
 import requests
 
 """
-    Obtenga el nombre del idioma que habla el pais y encriptelo con SHA1
+    Obtenga el nombre del idioma que habla el pais
 """
+
 
 def alert_country(function):
     def wrapper():
@@ -10,4 +11,4 @@ def alert_country(function):
         if(not response.ok):
             return function()
         return response.json()
-    return wrapper 
+    return wrapper
