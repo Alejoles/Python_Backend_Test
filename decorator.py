@@ -5,9 +5,9 @@ import requests
 """
 
 def alert_country(function):
-    def wrapper(pais):
-        response = requests.get(f"https://restcountries.com/v3.1/name/{pais}")
+    def wrapper():
+        response = requests.get(f"https://restcountries.com/v3.1/all")
         if(not response.ok):
-            return function('')
-        return response.json()[0]
+            return function()
+        return response.json()
     return wrapper 
