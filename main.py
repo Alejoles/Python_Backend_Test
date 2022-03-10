@@ -5,6 +5,7 @@ import timeit
 import sqlite3 as sql
 
 
+
 @alert_country
 def request_country():
     """
@@ -78,7 +79,7 @@ def main():
     time = []
     stats = request_country()
     df = pd.DataFrame(columns=['Region', 'Country', 'Language'])
-
+    
     for i in stats:
         start = timeit.default_timer()
         info = get_info_country(i)
@@ -86,9 +87,7 @@ def main():
         stop = timeit.default_timer()
         time.append(float("{:.2f}".format((stop - start)*1000)))
     df['Time(ms)'] = time  # Adding the column time with its values
-
-    print(df.head())
-
+    
     time_values(df)
 
     df.to_json(r'./data.json')  # Creates the .json in the actual directory

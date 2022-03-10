@@ -22,3 +22,8 @@ Desarrolle una aplicacion en python que genere la tabla anterior teniendo las si
 * No usa famework
 * Entrega Test Unitarios
 * Presenta un diseño de su solucion.
+
+
+## Design of solution
+
+![alt text](design.jpg)
