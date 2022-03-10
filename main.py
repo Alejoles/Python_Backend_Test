@@ -10,8 +10,7 @@ def request_country():
     """
         Calls alert_country to bring the countries from the web
     """
-    print("Ocurrio un error")
-    return None
+    return "Error in requesting country..."
 
 
 def encode_sha1(str):
@@ -74,9 +73,10 @@ def sql_data_read(df):
 
 
 def main():
-    stats = request_country()
     time = []
+    stats = request_country()
     df = pd.DataFrame(columns=['Region', 'Country', 'Language'])
+
     for i in stats:
         start = timeit.default_timer()
         info = get_info_country(i)
@@ -89,7 +89,7 @@ def main():
 
     time_values(df)
 
-    df.to_json(r'./data.json')
+    df.to_json(r'./data.json')  # Creates the .json in the actual directory
 
     sql_data_write(df)
     sql_data_read(df)
