@@ -26,4 +26,4 @@ Desarrolle una aplicacion en python que genere la tabla anterior teniendo las si
 
 ## Design of solution
 
-![alt text](design.jpg)
+![alt text](https://github.com/Alejoles/Python_Backend_Test/blob/master/design.png)
