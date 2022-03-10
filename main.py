@@ -8,7 +8,7 @@ import sqlite3 as sql
 @alert_country
 def request_country():
     """
-        Calls alert_country to bring the countries from the web
+        Calls alert_country(decorator) to bring the countries from the web
     """
     return "Error in requesting country..."
 
@@ -95,7 +95,7 @@ def main():
 
     df.to_json(r'./data.json')  # Creates the .json in the actual directory
 
-    #  sql_data_write(df)
+    sql_data_write(df)
     sql_data_read(df)
 
 
