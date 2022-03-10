@@ -60,6 +60,7 @@ def sql_data_write(df):
     """
     conn = sql.connect('countries.db')
     df.to_sql('countries', con=conn)
+    conn.close()
 
 
 def sql_data_read(df):
@@ -70,6 +71,7 @@ def sql_data_read(df):
     conn = sql.connect('countries.db')
     countries = pd.read_sql('SELECT * FROM countries', conn)
     print(countries)
+    conn.close()
 
 
 def main():
